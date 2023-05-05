@@ -8,7 +8,8 @@
     <div class="brand-logo" style="text-align: center">
         <img src="{{ asset('assets/admin/images/logo.svg') }}" alt="logo">
     </div>
-    <form method="POST" action="">
+    <form method="POST" action="{{route('login')}}">
+        @csrf
         <div class="form-group">
             <input type="email" name="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
         </div>

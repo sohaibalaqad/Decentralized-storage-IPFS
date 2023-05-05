@@ -13,8 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.index');
+
+Route::middleware('auth:user')->group(function () {
+
+    Route::get('/', function () {
+        $files = \App\Models\File::all();
+        return view('dashboard.index', compact('files'));
+    });
+
+    Route::get('/get-files', function (){
+        $files = \App\Models\File::all();
+        return $files;
+    });
 });
 
-Route::get('upload', [\App\Http\Controllers\IpfsController::class, 'uploud']);
+
