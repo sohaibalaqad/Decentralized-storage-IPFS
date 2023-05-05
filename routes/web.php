@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard.index');
+    $files = \App\Models\File::all();
+    return view('dashboard.index', compact('files'));
 });
 
-Route::get('upload', [\App\Http\Controllers\IpfsController::class, 'uploud']);
+Route::get('/get-files', function (){
+    $files = \App\Models\File::all();
+    return $files;
+});
