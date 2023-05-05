@@ -14,7 +14,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard.index');
-});
+    $files = \App\Models\File::all();
+    return view('dashboard.index', compact('files'));
+})->middleware('auth');
 
-Route::get('upload', [\App\Http\Controllers\IpfsController::class, 'uploud']);
+Route::get('/get-files', function (){
+    $files = \App\Models\File::all();
+    return $files;
+})->middleware('auth');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        $files = \App\Models\File::all();
+        return view('dashboard.index', compact('files'));
+    })->name('dashboard');
+});
