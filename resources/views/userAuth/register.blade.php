@@ -6,7 +6,7 @@
 
 @section('content')
         <div class="brand-logo">
-            <img src="{{ asset('assets/admin/images/logo.svg') }}" alt="logo">
+            <img src="{{ asset('assets.old/admin/images/logo.svg') }}" alt="logo">
         </div>
         <h4>New here?</h4>
         <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>

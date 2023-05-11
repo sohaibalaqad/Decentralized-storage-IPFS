@@ -13,10 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $files = \App\Models\File::all();
-    return view('dashboard.index', compact('files'));
-})->middleware('auth');
+//Route::get('/', function () {
+//    $files = \App\Models\File::all();
+//    return view('dashboard.index', compact('files'));
+//})->middleware('auth');
+
+Route::get('/', function (){
+    return view('welcome');
+});
 
 Route::get('/get-files', function (){
     $files = \App\Models\File::all();
@@ -32,4 +36,8 @@ Route::middleware([
         $files = \App\Models\File::all();
         return view('dashboard.index', compact('files'));
     })->name('dashboard');
+});
+
+Route::get('/', function (){
+    return view('welcome');
 });
