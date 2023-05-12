@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="brand-logo">
-        <img src="{{ asset('assets/admin/images/logo.svg') }}" alt="logo">
+        <img src="{{ asset('assets.old/admin/images/logo.svg') }}" alt="logo">
     </div>
     <h6 class="font-weight-light">Enter your email address and we'll send you an email with instructions to reset your password. </h6>
     <form class="pt-3">

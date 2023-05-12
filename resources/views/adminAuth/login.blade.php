@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="brand-logo" style="text-align: center">
-        <img src="{{ asset('assets/admin/images/logo.svg') }}" alt="logo">
+        <img src="{{ asset('assets.old/admin/images/logo.svg') }}" alt="logo">
     </div>
     <form method="POST" action="{{route('login')}}">
         @csrf
