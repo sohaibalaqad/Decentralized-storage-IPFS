@@ -13,18 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    $files = \App\Models\File::all();
+    return view('dashboard.index', compact('files'));
+})->middleware('auth');
 
-Route::middleware('auth:user')->group(function () {
+Route::get('/get-files', function (){
+    $files = \App\Models\File::all();
+    return $files;
+})->middleware('auth');
 
-    Route::get('/', function () {
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
         $files = \App\Models\File::all();
         return view('dashboard.index', compact('files'));
-    });
-
-    Route::get('/get-files', function (){
-        $files = \App\Models\File::all();
-        return $files;
-    });
+    })->name('dashboard');
 });
-
-
