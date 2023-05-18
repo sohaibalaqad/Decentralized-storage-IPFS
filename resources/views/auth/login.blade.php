@@ -2,8 +2,8 @@
 
 @section('main')
     <div class="d-flex flex-column flex-root">
-        <!--begin::Authentication - Sign-in -->
-        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(../assets/media/illustrations/sketchy-1/14.png">
+        {{-- <!--begin::Authentication - Sign-in -->                                                                                                                                    ../assets/media/illustrations/sketchy-1/22.png              --}}
+        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-sm-contain bgi-attachment-fixed" style="background-image: url(https://datavizcatalogue.com/methods/images/top_images/SVG/network_diagram.svg">
             <!--begin::Content-->
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
                 <!--begin::Logo-->

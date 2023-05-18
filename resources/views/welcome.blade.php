@@ -350,14 +350,10 @@
                     <!--end::Item-->
                     <!--begin::Item-->
                     <div class="text-center px-5 pt-5 pt-lg-10 px-lg-10">
-                        <img src="{{ asset('assets/media/product-demos/demo4.png') }}" class="card-rounded shadow mw-100" alt="" />
+                        <img src="{{ asset('assets/media/product-demos/demo3.png') }}" class="card-rounded shadow mw-100" alt="" />
                     </div>
                     <!--end::Item-->
-                    <!--begin::Item-->
-                    <div class="text-center px-5 pt-5 pt-lg-10 px-lg-10">
-                        <img src="{{ asset('assets/media/product-demos/demo5.png') }}" class="card-rounded shadow mw-100" alt="" />
-                    </div>
-                    <!--end::Item-->
+                    
                 </div>
                 <!--end::Slider-->
                 <!--begin::Slider button-->
@@ -658,7 +654,7 @@
     </div>
     <!--end::Service Section-->
     <!--begin::Projects Section-->
-    <div class="mb-lg-n15 position-relative z-index-2">
+    {{-- <div class="mb-lg-n15 position-relative z-index-2">
         <!--begin::Container-->
         <div class="container">
             <!--begin::Card-->
@@ -1074,7 +1070,7 @@
             <!--end::Card-->
         </div>
         <!--end::Container-->
-    </div>
+    </div> --}}
     <!--end::Projects Section-->
     <!--begin::Pricing Section-->
     <div class="mt-sm-n20">

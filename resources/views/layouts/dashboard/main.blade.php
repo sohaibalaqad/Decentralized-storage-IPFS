@@ -309,6 +309,10 @@
     <script src="{{ asset('js/demo/chart-pie-demo.js')}}"></script>
     @stack('js')
 
+
+		
+
+
 </body>
 
 </html>
