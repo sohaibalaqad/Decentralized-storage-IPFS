@@ -27,42 +27,48 @@ Route::get('/get-files', function (){
     return $files;
 })->middleware('auth');
 
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified'
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         $files = \App\Models\File::all();
-//         return view('dashboard.index', compact('files'));
-//     })->name('dashboard');
+ Route::middleware([
+     'auth:sanctum',
+     config('jetstream.auth_session'),
+     'verified'
+ ])->group(function () {
+     Route::get('/dashboard', function () {
+         $files = \App\Models\File::all();
+         return view('dashboard.index', compact('files'));
+     })->name('dashboard');
 
-//     // Route::get('/Files', function (){
-//     //     return view('dashboard.Files');
-//     // });
-// });
+     Route::get('/Files', function (){
+         return view('dashboard.Files');
+     })->name('Files');
+
+     Route::get('/MyFiles', function (){
+         $files = \App\Models\File::all();
+         return view('dashboard.tableFile', compact('files'));
+     })->name('MyFiles');
+
+ });
 
 Route::get('/', function (){
     return view('welcome');
 })->name('welcome');
 
 
-Route::get('/dashboard', function () {
-    $files = \App\Models\File::all();
-    return view('dashboard.index', compact('files'));
-})->name('dashboard');
+//Route::get('/dashboard', function () {
+//    $files = \App\Models\File::all();
+//    return view('dashboard.index', compact('files'));
+//})->name('dashboard');
+//
+
+//
+//Route::get('/Files', function (){
+//    return view('dashboard.Files');
+//})->name('Files');
 
 
-
-Route::get('/Files', function (){
-    return view('dashboard.Files');
-})->name('Files');
-
-
-Route::get('/MyFiles', function (){
-    $files = \App\Models\File::all();
-    return view('dashboard.tableFile', compact('files'));
-})->name('MyFiles');
+//Route::get('/MyFiles', function (){
+//    $files = \App\Models\File::all();
+//    return view('dashboard.tableFile', compact('files'));
+//})->name('MyFiles');
 
 
 
