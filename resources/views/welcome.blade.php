@@ -353,7 +353,7 @@
                         <img src="{{ asset('assets/media/product-demos/demo3.png') }}" class="card-rounded shadow mw-100" alt="" />
                     </div>
                     <!--end::Item-->
-                    
+
                 </div>
                 <!--end::Slider-->
                 <!--begin::Slider button-->

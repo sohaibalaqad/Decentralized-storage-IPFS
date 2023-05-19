@@ -23,7 +23,7 @@ Route::get('/', function (){
 });
 
 Route::get('/get-files', function (){
-    $files = \App\Models\File::all();
+    $files = \App\Models\File::orderBy('created_at', 'desc')->get();
     return $files;
 })->middleware('auth');
 
@@ -51,25 +51,3 @@ Route::get('/get-files', function (){
 Route::get('/', function (){
     return view('welcome');
 })->name('welcome');
-
-
-//Route::get('/dashboard', function () {
-//    $files = \App\Models\File::all();
-//    return view('dashboard.index', compact('files'));
-//})->name('dashboard');
-//
-
-//
-//Route::get('/Files', function (){
-//    return view('dashboard.Files');
-//})->name('Files');
-
-
-//Route::get('/MyFiles', function (){
-//    $files = \App\Models\File::all();
-//    return view('dashboard.tableFile', compact('files'));
-//})->name('MyFiles');
-
-
-
-

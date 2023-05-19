@@ -1733,7 +1733,7 @@
                                         <button type="submit" class="btn btn-primary">Upload</button>
 
                                     </form>--}}
-							<a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Upload File</a>
+{{--							<a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Upload File</a>--}}
                                      {{-- <form id="upload-form">
                                         <input type="file" name="file" id="file-input">
                                          <label for="file-input" class="btn btn-sm btn-primary">Upload File </label>

@@ -18,7 +18,7 @@
                 <div class="card-header mt-5">
                     <!--begin::Card title-->
                     <div class="card-title flex-column">
-                        <h3 class="fw-bolder mb-1">الملفات</h3>
+                        <h3 class="fw-bolder mb-1">Files</h3>
                         {{-- <div class="fs-6 text-gray-400"></div> --}}
                     </div>
                     <!--begin::Card title-->
@@ -47,6 +47,8 @@
                         </div>
                         <!--end::Select--> --}}
                         <!--begin::Search-->
+                        <a href="#" style="margin-right: 25px" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_file" id="kt_toolbar_primary_button">Upload File</a>
+
                         <div class="d-flex align-items-center position-relative my-1">
                             <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
                             <span class="svg-icon svg-icon-3 position-absolute ms-3">
@@ -63,6 +65,8 @@
                     <!--begin::Card toolbar-->
                 </div>
                 <!--end::Card header-->
+                <div class="alert-div"></div>
+
                 <!--begin::Card body-->
                 <div class="card-body pt-0">
                     <!--begin::Table container-->
@@ -90,7 +94,7 @@
                                     <td>{{ number_format($file->size / 1024, 2) }} KB</td>
                                     <td>
                                         {{-- <span class="badge badge-light-success fw-bolder px-4 py-3">Approved</span> --}}
-                                        <a href="http://217.147.1.38:5002/ipfs/{{$file->hash}}" target="_blank" class="btn btn-light-success btn-sm">View</a>
+                                        <a href="http://217.147.1.37:5002/ipfs/{{$file->hash}}" target="_blank" class="btn btn-light-success btn-sm">View</a>
                                     </td>
 
                                 </tr>
@@ -109,6 +113,82 @@
 						<!-- Ahmed -->
 
 
+            <!--begin::Modal - Create App-->
+            <div class="modal fade" id="kt_modal_add_file" tabindex="-1" aria-hidden="true">
+                <!--begin::Modal dialog-->
+                <div class="modal-dialog modal-dialog-centered mw-900px">
+                    <!--begin::Modal content-->
+                    <div class="modal-content">
+                        <!--begin::Modal header-->
+                        <div class="modal-header">
+                            <!--begin::Modal title-->
+                            <h2>Upload File</h2>
+                            <!--end::Modal title-->
+                            <!--begin::Close-->
+                            <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                <span class="svg-icon svg-icon-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+									<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+								</svg>
+							</span>
+                                <!--end::Svg Icon-->
+                            </div>
+                            <!--end::Close-->
+                        </div>
+                        <!--end::Modal header-->
+                        <!--begin::Modal body-->
+                        <div class="modal-body py-lg-10 px-lg-10">
+                            <!--begin::Stepper-->
+                            <div class="stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid" id="kt_modal_add_file_stepper">
+                                <!--begin::Content-->
+                                <div class="flex-row-fluid py-lg-5 px-lg-15">
+                                    <!--begin::Form-->
+                                    <form class="form"  id="kt_modal_add_file_form">
+                                        <!--begin::Step 1-->
+                                        <div class="current" data-kt-stepper-element="content">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required">File</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="File"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="file" class="form-control form-control-lg form-control-solid" name="file" placeholder="" value="" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                        </div>
+                                        <!--end::Step 1-->
+
+                                        <!--begin::Actions-->
+                                        <div class="d-flex flex-stack pt-10">
+                                            <button type="submit" class="btn btn-lg btn-primary">Upload
+                                            </button>
+                                        </div>
+
+                                        <!--end::Actions-->
+                                    </form>
+                                    <!--end::Form-->
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Stepper-->
+                        </div>
+                        <!--end::Modal body-->
+                    </div>
+                    <!--end::Modal content-->
+                </div>
+                <!--end::Modal dialog-->
+            </div>
+            <!--end::Modal - Create App-->
+
+
 
 
 
@@ -122,7 +202,7 @@
         <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
 
 <script>
-    $(document).on('submit', '#upload-form', function(event) {
+    $(document).on('submit', '#kt_modal_add_file_form', function(event) {
         event.preventDefault();
 
         var file = $('input[name="file"]')[0].files[0];
@@ -142,7 +222,11 @@
                     url: '/get-files', // Replace with the URL of the endpoint that fetches the list of files
                     type: 'GET',
                     success: function (files) {
-                        var tableBody = $('#file-table tbody');
+
+                        var modal = document.getElementById('kt_modal_add_file');
+                        $(modal).modal('hide');
+
+                        var tableBody = $('#kt_profile_overview_table tbody');
                         tableBody.empty();
 
                         for (var i = 0; i < files.length; i++) {
@@ -153,7 +237,7 @@
                                 '<td>' + file.type + '</td>' +
                                 '<td>' + (file.size / 1024).toFixed(2) + ' KB</td>' +
                                 '<td>' +
-                                '<a href="http://217.147.1.38:5002/ipfs/' + file.hash + '" target="_blank">' +
+                                '<a href="http://217.147.1.37:5002/ipfs/' + file.hash + '" target="_blank">' +
                                 '<i class="fa fa-eye"></i>' +
                                 '</a>' +
                                 '</td>' +
