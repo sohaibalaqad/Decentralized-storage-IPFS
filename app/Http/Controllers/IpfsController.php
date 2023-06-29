@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\EncryptionHelper;
 use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -11,7 +12,7 @@ class IpfsController extends Controller
     protected $baseUri = '';
     public function __construct()
     {
-        $baseUrl = 'http://217.147.1.178';
+        $baseUrl = 'http://217.147.1.37';
         $port = '5001';
         $this->baseUri = $baseUrl . ":" . $port . "/api/v0/";
     }
@@ -20,11 +21,18 @@ class IpfsController extends Controller
     {
         if ($request->has('file')) {
             $file = $request->file('file');
+            $fileName = $file->getClientOriginalName();
+
+            $encryptedContent = EncryptionHelper::encrypt(
+                file_get_contents($file->path()),
+                'jasubcui783ndsaicj934dfscd75fr2a2s8da8ef85ac45e3f',
+                env('CIPHER_ALGORITHM')
+            );
 
             $response = Http::attach(
-                'file', // Name of the form field that contains the file
-                file_get_contents($file->path()), // Contents of the file
-                $file->getClientOriginalName() // Name of the file
+                'file',
+                $encryptedContent,
+                $fileName
             )->post($this->baseUri . 'add');
 
             if ($response->ok()) {
@@ -43,38 +51,40 @@ class IpfsController extends Controller
         } else {
             return response()->json(['error' => 'file is required']);
         }
+
+       }
+
+    public function showFile(Request $request, $hash)
+    {
+        $response = Http::get($this->baseUri . "cat?arg={$hash}");
+        $encryptedData = $response->body();
+        $decryptedValue = EncryptionHelper::decrypt($encryptedData,
+            'jasubcui783ndsaicj934dfscd75fr2a2s8da8ef85ac45e3f',
+            env('CIPHER_ALGORITHM')
+        );
+
+        if ($response->ok()) {
+            $finfo = new \finfo(FILEINFO_MIME_TYPE);
+            $contentType = $finfo->buffer($decryptedValue);
+            $headers = [
+                'Content-Type' => $contentType,
+            ];
+            return response($decryptedValue, 200, $headers);
+        } else {
+            return response()->json(['error' => 'Failed to retrieve file'], $response->status());
+        }
     }
 
     public function createFolder(Request $request)
     {
-        // Use the HTTP client to make a request to the IPFS API
-        $response = Http::post($this->baseUri . 'files/mkdir', [
-            'arg' => $request->post('folder_name') // Specify the path of the folder to create
-        ]);
+        $response = Http::post($this->baseUri . 'files/mkdir?arg=' . $request->post('arg'));
 
-        // Check if the request was successful
+
         if ($response->ok()) {
-            // Get the CID of the created folder
             $cid = $response->json()['Hash'];
             return response()->json(['cid' => $cid]);
         } else {
             return response()->json(['error' => 'Failed to create folder'], $response->status());
-        }
-    }
-
-    // Error  ----------------------------------------------------------------------------------------------------------------------------------
-    public function showFile(Request $request, $hash)
-    {
-        // Use the HTTP client to make a request to the IPFS API
-        $response = Http::get($this->baseUri . "cat?arg={$hash}");
-
-        // Check if the request was successful
-        if ($response->ok()) {
-            dd($response);
-            // Return the file contents as a response
-            return response($response->body())->header('Content-Type', 'application/octet-stream');
-        } else {
-            return response()->json(['error' => 'Failed to retrieve file'], $response->status());
         }
     }
 }
