@@ -954,11 +954,11 @@
                                                     <style>svg {fill: #009ef7}</style>
                                                     <path d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"/></svg>
                                             </span>
-                                            <a href="#"
+                                            <a href="{{ route('folder.show', $folder->id) }}"
                                                class="text-gray-800 text-hover-primary ms-6">{{ $folder->name }}</a>
                                         </div>
                                     </td>
-                                    <td>583 KB</td>
+                                    <td>0 KB</td>
                                     <td data-order="Invalid date">{{ date('j M Y, g:i a', strtotime($folder->updated_at)) }}</td>
                                     <td></td>
                                     <td data-order="Invalid date"></td>

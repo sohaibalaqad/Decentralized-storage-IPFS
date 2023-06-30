@@ -100,4 +100,15 @@ class IpfsController extends Controller
 //
 //        }
     }
+
+    public function showFolder(Request $request, $id)
+    {
+        $folder = Folder::findOrFail($id);
+
+        $folders = Folder::where('parent_id', $folder->id)->orderBy('created_at', 'desc')->get();
+        $files = File::where('folder_id', $folder->id)->orderBy('created_at', 'desc')->get();
+
+        return view('dashboard.showFolder', compact('folder', 'folders', 'files'));
+
+    }
 }

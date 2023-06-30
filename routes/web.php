@@ -58,3 +58,6 @@ Route::get('/get-folders', function (){
 Route::get('/', function (){
     return view('welcome');
 })->name('welcome');
+
+
+Route::get('/folders/{id}', [\App\Http\Controllers\IpfsController::class, 'showFolder'])->name('folder.show');
