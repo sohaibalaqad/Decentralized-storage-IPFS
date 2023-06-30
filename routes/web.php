@@ -27,6 +27,11 @@ Route::get('/get-files', function (){
     return $files;
 })->middleware('auth');
 
+Route::get('/get-folders', function (){
+    $folders = \App\Models\Folder::orderBy('created_at', 'desc')->get();
+    return $folders;
+})->middleware('auth');
+
  Route::middleware([
      'auth:sanctum',
      config('jetstream.auth_session'),
@@ -38,7 +43,9 @@ Route::get('/get-files', function (){
      })->name('dashboard');
 
      Route::get('/Files', function (){
-         return view('dashboard.Files');
+         $files = \App\Models\File::orderBy('created_at', 'desc')->get();
+         $folders = \App\Models\Folder::orderBy('created_at', 'desc')->get();
+         return view('dashboard.Files', compact('files', 'folders'));
      })->name('Files');
 
      Route::get('/MyFiles', function (){

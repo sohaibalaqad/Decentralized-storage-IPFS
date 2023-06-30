@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('upload', [\App\Http\Controllers\IpfsController::class, 'uploud'])->name('add.file');
-Route::post('folder/create', [\App\Http\Controllers\IpfsController::class, 'createFolder']);
+Route::post('folder/create', [\App\Http\Controllers\IpfsController::class, 'createFolder'])->name('create.folder');
 Route::get('cat/{hash}', [\App\Http\Controllers\IpfsController::class, 'showFile'])->name('cat');
-Route::get('test', [\App\Http\Controllers\IpfsController::class, 'test']);
+//Route::get('test', [\App\Http\Controllers\IpfsController::class, 'test']);

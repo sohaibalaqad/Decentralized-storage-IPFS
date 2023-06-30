@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\EncryptionHelper;
 use App\Models\File;
+use App\Models\Folder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -77,14 +78,26 @@ class IpfsController extends Controller
 
     public function createFolder(Request $request)
     {
-        $response = Http::post($this->baseUri . 'files/mkdir?arg=' . $request->post('arg'));
 
+        Folder::create([
+            'name' => $request->folder_name,
+            'hash' => null,
+            'parent_id' => $request->parent_id,
+            'user_id' => 1
+        ]);
 
-        if ($response->ok()) {
-            $cid = $response->json()['Hash'];
-            return response()->json(['cid' => $cid]);
-        } else {
-            return response()->json(['error' => 'Failed to create folder'], $response->status());
-        }
+        return redirect()->back();
+
+//        $response = Http::post($this->baseUri . 'files/mkdir?arg=' . $request->post('arg'), [
+//            'parents' => true,
+//        ]);
+//
+//        if ($response->ok()) {
+//            $cid = $response->json()['Hash'];
+//            return response()->json(['cid' => $cid]);
+//        } else {
+//            return response()->json(['error' => 'Failed to create folder: ' . $response->json()['Message']], $response->status());
+//
+//        }
     }
 }
