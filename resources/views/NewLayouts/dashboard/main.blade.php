@@ -86,21 +86,21 @@
 										<span class="menu-title">Dashboard</span>
 									</a>
 								</div>
-								<div class="menu-item">
-									<a class="menu-link" href="profile.html">
-										<span class="menu-icon">
-											<!--begin::Svg Icon | path: icons/duotune/art/art002.svg-->
-											<span class="svg-icon svg-icon-2">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-													<path opacity="0.3" d="M8.9 21L7.19999 22.6999C6.79999 23.0999 6.2 23.0999 5.8 22.6999L4.1 21H8.9ZM4 16.0999L2.3 17.8C1.9 18.2 1.9 18.7999 2.3 19.1999L4 20.9V16.0999ZM19.3 9.1999L15.8 5.6999C15.4 5.2999 14.8 5.2999 14.4 5.6999L9 11.0999V21L19.3 10.6999C19.7 10.2999 19.7 9.5999 19.3 9.1999Z" fill="black" />
-													<path d="M21 15V20C21 20.6 20.6 21 20 21H11.8L18.8 14H20C20.6 14 21 14.4 21 15ZM10 21V4C10 3.4 9.6 3 9 3H4C3.4 3 3 3.4 3 4V21C3 21.6 3.4 22 4 22H9C9.6 22 10 21.6 10 21ZM7.5 18.5C7.5 19.1 7.1 19.5 6.5 19.5C5.9 19.5 5.5 19.1 5.5 18.5C5.5 17.9 5.9 17.5 6.5 17.5C7.1 17.5 7.5 17.9 7.5 18.5Z" fill="black" />
-												</svg>
-											</span>
-											<!--end::Svg Icon-->
-										</span>
-										<span class="menu-title">Profile</span>
-									</a>
-								</div>
+{{--								<div class="menu-item">--}}
+{{--									<a class="menu-link" href="profile.html">--}}
+{{--										<span class="menu-icon">--}}
+{{--											<!--begin::Svg Icon | path: icons/duotune/art/art002.svg-->--}}
+{{--											<span class="svg-icon svg-icon-2">--}}
+{{--												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">--}}
+{{--													<path opacity="0.3" d="M8.9 21L7.19999 22.6999C6.79999 23.0999 6.2 23.0999 5.8 22.6999L4.1 21H8.9ZM4 16.0999L2.3 17.8C1.9 18.2 1.9 18.7999 2.3 19.1999L4 20.9V16.0999ZM19.3 9.1999L15.8 5.6999C15.4 5.2999 14.8 5.2999 14.4 5.6999L9 11.0999V21L19.3 10.6999C19.7 10.2999 19.7 9.5999 19.3 9.1999Z" fill="black" />--}}
+{{--													<path d="M21 15V20C21 20.6 20.6 21 20 21H11.8L18.8 14H20C20.6 14 21 14.4 21 15ZM10 21V4C10 3.4 9.6 3 9 3H4C3.4 3 3 3.4 3 4V21C3 21.6 3.4 22 4 22H9C9.6 22 10 21.6 10 21ZM7.5 18.5C7.5 19.1 7.1 19.5 6.5 19.5C5.9 19.5 5.5 19.1 5.5 18.5C5.5 17.9 5.9 17.5 6.5 17.5C7.1 17.5 7.5 17.9 7.5 18.5Z" fill="black" />--}}
+{{--												</svg>--}}
+{{--											</span>--}}
+{{--											<!--end::Svg Icon-->--}}
+{{--										</span>--}}
+{{--										<span class="menu-title">Profile</span>--}}
+{{--									</a>--}}
+{{--								</div>--}}
 								<div class="menu-item">
 									<a class="menu-link" href="{{route('Files')}}">
 										<span class="menu-icon">
@@ -116,37 +116,37 @@
 										<span class="menu-title">My Files</span>
 									</a>
 								</div>
-								<div class="menu-item">
-									<a class="menu-link" href="setting.html">
-										<span class="menu-icon">
-											<!--begin::Svg Icon | path: icons/duotune/layouts/lay010.svg-->
-											<span class="svg-icon svg-icon-2">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-													<path opacity="0.3" d="M20 21H3C2.4 21 2 20.6 2 20V10C2 9.4 2.4 9 3 9H20C20.6 9 21 9.4 21 10V20C21 20.6 20.6 21 20 21Z" fill="black" />
-													<path d="M20 7H3C2.4 7 2 6.6 2 6V3C2 2.4 2.4 2 3 2H20C20.6 2 21 2.4 21 3V6C21 6.6 20.6 7 20 7Z" fill="black" />
-												</svg>
-											</span>
-											<!--end::Svg Icon-->
-										</span>
-										<span class="menu-title">Setting</span>
-									</a>
-								</div>
-								<div class="menu-item">
-									<a class="menu-link" href="{{route('welcome')}}">
-										<span class="menu-icon">
-											<!--begin::Svg Icon | path: icons/duotune/communication/com001.svg-->
-											<span class="svg-icon svg-icon-2">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-													<path opacity="0.3" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="black" />
-													<path d="M19 10.4C19 10.3 19 10.2 19 10C19 8.9 18.1 8 17 8H16.9C15.6 6.2 14.6 4.29995 13.9 2.19995C13.3 2.09995 12.6 2 12 2C11.9 2 11.8 2 11.7 2C12.4 4.6 13.5 7.10005 15.1 9.30005C15 9.50005 15 9.7 15 10C15 11.1 15.9 12 17 12C17.1 12 17.3 12 17.4 11.9C18.6 13 19.9 14 21.4 14.8C21.4 14.8 21.5 14.8 21.5 14.9C21.7 14.2 21.8 13.5 21.9 12.7C20.9 12.1 19.9 11.3 19 10.4Z" fill="black" />
-													<path d="M12 15C11 13.1 10.2 11.2 9.60001 9.19995C9.90001 8.89995 10 8.4 10 8C10 7.1 9.40001 6.39998 8.70001 6.09998C8.40001 4.99998 8.20001 3.90005 8.00001 2.80005C7.30001 3.10005 6.70001 3.40002 6.20001 3.90002C6.40001 4.80002 6.50001 5.6 6.80001 6.5C6.40001 6.9 6.10001 7.4 6.10001 8C6.10001 9 6.80001 9.8 7.80001 10C8.30001 11.6 9.00001 13.2 9.70001 14.7C7.10001 13.2 4.70001 11.5 2.40001 9.5C2.20001 10.3 2.10001 11.1 2.10001 11.9C4.60001 13.9 7.30001 15.7 10.1 17.2C10.2 18.2 11 19 12 19C12.6 20 13.2 20.9 13.9 21.8C14.6 21.7 15.3 21.5 15.9 21.2C15.4 20.5 14.9 19.8 14.4 19.1C15.5 19.5 16.5 19.9 17.6 20.2C18.3 19.8 18.9 19.2 19.4 18.6C17.6 18.1 15.7 17.5 14 16.7C13.9 15.8 13.1 15 12 15Z" fill="black" />
-												</svg>
-											</span>
-											<!--end::Svg Icon-->
-										</span>
-										<span class="menu-title">Landing Page</span>
-									</a>
-								</div>
+{{--								<div class="menu-item">--}}
+{{--									<a class="menu-link" href="setting.html">--}}
+{{--										<span class="menu-icon">--}}
+{{--											<!--begin::Svg Icon | path: icons/duotune/layouts/lay010.svg-->--}}
+{{--											<span class="svg-icon svg-icon-2">--}}
+{{--												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">--}}
+{{--													<path opacity="0.3" d="M20 21H3C2.4 21 2 20.6 2 20V10C2 9.4 2.4 9 3 9H20C20.6 9 21 9.4 21 10V20C21 20.6 20.6 21 20 21Z" fill="black" />--}}
+{{--													<path d="M20 7H3C2.4 7 2 6.6 2 6V3C2 2.4 2.4 2 3 2H20C20.6 2 21 2.4 21 3V6C21 6.6 20.6 7 20 7Z" fill="black" />--}}
+{{--												</svg>--}}
+{{--											</span>--}}
+{{--											<!--end::Svg Icon-->--}}
+{{--										</span>--}}
+{{--										<span class="menu-title">Setting</span>--}}
+{{--									</a>--}}
+{{--								</div>--}}
+{{--								<div class="menu-item">--}}
+{{--									<a class="menu-link" href="{{route('welcome')}}">--}}
+{{--										<span class="menu-icon">--}}
+{{--											<!--begin::Svg Icon | path: icons/duotune/communication/com001.svg-->--}}
+{{--											<span class="svg-icon svg-icon-2">--}}
+{{--												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">--}}
+{{--													<path opacity="0.3" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="black" />--}}
+{{--													<path d="M19 10.4C19 10.3 19 10.2 19 10C19 8.9 18.1 8 17 8H16.9C15.6 6.2 14.6 4.29995 13.9 2.19995C13.3 2.09995 12.6 2 12 2C11.9 2 11.8 2 11.7 2C12.4 4.6 13.5 7.10005 15.1 9.30005C15 9.50005 15 9.7 15 10C15 11.1 15.9 12 17 12C17.1 12 17.3 12 17.4 11.9C18.6 13 19.9 14 21.4 14.8C21.4 14.8 21.5 14.8 21.5 14.9C21.7 14.2 21.8 13.5 21.9 12.7C20.9 12.1 19.9 11.3 19 10.4Z" fill="black" />--}}
+{{--													<path d="M12 15C11 13.1 10.2 11.2 9.60001 9.19995C9.90001 8.89995 10 8.4 10 8C10 7.1 9.40001 6.39998 8.70001 6.09998C8.40001 4.99998 8.20001 3.90005 8.00001 2.80005C7.30001 3.10005 6.70001 3.40002 6.20001 3.90002C6.40001 4.80002 6.50001 5.6 6.80001 6.5C6.40001 6.9 6.10001 7.4 6.10001 8C6.10001 9 6.80001 9.8 7.80001 10C8.30001 11.6 9.00001 13.2 9.70001 14.7C7.10001 13.2 4.70001 11.5 2.40001 9.5C2.20001 10.3 2.10001 11.1 2.10001 11.9C4.60001 13.9 7.30001 15.7 10.1 17.2C10.2 18.2 11 19 12 19C12.6 20 13.2 20.9 13.9 21.8C14.6 21.7 15.3 21.5 15.9 21.2C15.4 20.5 14.9 19.8 14.4 19.1C15.5 19.5 16.5 19.9 17.6 20.2C18.3 19.8 18.9 19.2 19.4 18.6C17.6 18.1 15.7 17.5 14 16.7C13.9 15.8 13.1 15 12 15Z" fill="black" />--}}
+{{--												</svg>--}}
+{{--											</span>--}}
+{{--											<!--end::Svg Icon-->--}}
+{{--										</span>--}}
+{{--										<span class="menu-title">Landing Page</span>--}}
+{{--									</a>--}}
+{{--								</div>--}}
 
 
 							</div>
@@ -1508,7 +1508,7 @@
 										<div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
 											<!--begin::Menu wrapper-->
 											<div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-												<img src="{{asset('assets/media/avatars/Ahmed.jpg')}}" alt="user" />
+												<img src="{{asset('assets/media/avatars/sohib.jpg')}}" alt="user" />
 											</div>
 											<!--begin::Menu-->
 											<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px" data-kt-menu="true">
@@ -1517,14 +1517,14 @@
 													<div class="menu-content d-flex align-items-center px-3">
 														<!--begin::Avatar-->
 														<div class="symbol symbol-50px me-5">
-															<img alt="Logo" src="{{ asset('assets/media/avatars/Ahmed.jpg')}}" />
+															<img alt="Logo" src="{{ asset('assets/media/avatars/sohib.jpg')}}" />
 														</div>
 														<!--end::Avatar-->
 														<!--begin::Username-->
 														<div class="d-flex flex-column">
-															<div class="fw-bolder d-flex align-items-center fs-5">Ahmed Qwaider
+															<div class="fw-bolder d-flex align-items-center fs-5">Sohaib Alaqad
 															<span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span></div>
-															<a href="#" class="fw-bold text-muted text-hover-primary fs-7">ahmedq@connect3.com</a>
+															<a href="#" class="fw-bold text-muted text-hover-primary fs-7">salaqad@connect3.com</a>
 														</div>
 														<!--end::Username-->
 													</div>
