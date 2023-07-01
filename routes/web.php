@@ -48,6 +48,26 @@ Route::get('/get-folders', function (){
          return view('dashboard.Files', compact('files', 'folders'));
      })->name('Files');
 
+        // partner Routes
+        Route::get('/partner/dashboard', function () {
+            return view('PartnerDashboard.index');
+        })->name('partner_dashboard');
+
+        Route::get('/partner/nodes', function () {
+            return view('PartnerDashboard.node');
+        })->name('nodes');
+
+        Route::get('/partner/getStart', function () {
+            return view('PartnerDashboard.GetStarted');
+        })->name('get_start');
+
+        Route::get('/partner/documentation', function () {
+            return view('PartnerDashboard.documentation');
+        })->name('documentation');
+
+
+
+
  });
 
 Route::get('/', function (){
