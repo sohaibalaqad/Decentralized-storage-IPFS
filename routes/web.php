@@ -43,8 +43,8 @@ Route::get('/get-folders', function (){
      })->name('dashboard');
 
      Route::get('/Files', function (){
-         $files = \App\Models\File::orderBy('created_at', 'desc')->get();
-         $folders = \App\Models\Folder::orderBy('created_at', 'desc')->get();
+         $files = \App\Models\File::where('folder_id', null)->orderBy('created_at', 'desc')->get();
+         $folders = \App\Models\Folder::where('parent_id', null)->orderBy('created_at', 'desc')->get();
          return view('dashboard.Files', compact('files', 'folders'));
      })->name('Files');
 

@@ -850,7 +850,7 @@
                 <!--end::Folder path-->
                 <!--begin::Folder Stats-->
                 <div class="badge badge-lg badge-primary">
-                    <span id="kt_file_manager_items_counter">5 items</span>
+                    <span id="kt_file_manager_items_counter">{{ $folders->count() + $files->count() }}  items</span>
                 </div>
                 <!--end::Folder Stats-->
             </div>

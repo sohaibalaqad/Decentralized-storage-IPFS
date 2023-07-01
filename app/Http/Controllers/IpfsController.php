@@ -42,6 +42,7 @@ class IpfsController extends Controller
                     'hash' => $response->json()['Hash'],
                     'type' => $file->getMimeType(),
                     'size' => $response->json()['Size'],
+                    'folder_id' => $request->folder_id,
                     'user_id' => 1
                 ]);
                 return response()->json(['response' => $response->json()]);

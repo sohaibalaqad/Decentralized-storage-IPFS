@@ -1,7 +1,18 @@
 @extends('NewLayouts.dashboard.main')
 
 @section('title')
-    My Files
+    @php
+        $url = \Illuminate\Support\Facades\Request::url();
+
+       if (\Illuminate\Support\Str::contains($url, 'folders')) {
+           $number = \Illuminate\Support\Str::afterLast($url, '/');
+           $folderName = \App\Models\Folder::findOrFail($number);
+           echo "<a href=" . route('Files') . ">My Files  >  </a>" . $folderName->name;
+       }else{
+           echo "My Files";
+       }
+    @endphp
+
 @endsection
 @push('css')
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}"/>
@@ -86,7 +97,7 @@
                 <!--end::Folder path-->
                 <!--begin::Folder Stats-->
                 <div class="badge badge-lg badge-primary">
-                    <span id="kt_file_manager_items_counter">5 items</span>
+                    <span id="kt_file_manager_items_counter">{{ $folders->count() + $files->count() }} items</span>
                 </div>
                 <!--end::Folder Stats-->
             </div>
@@ -335,44 +346,6 @@
                                 @endforeach
 
 
-{{--                                @php--}}
-{{--                                    function getFileIcon($fileName) {--}}
-{{--                                        $extension = pathinfo($fileName, PATHINFO_EXTENSION);--}}
-{{--                                        switch ($extension) {--}}
-{{--                                            case 'sql':--}}
-{{--                                                return 'assets/media/svg/files/sql.svg';--}}
-{{--                                            case 'pdf':--}}
-{{--                                                return 'assets/media/svg/files/pdf.svg';--}}
-{{--                                            case 'doc':--}}
-{{--                                                return 'assets/media/svg/files/doc.svg';--}}
-{{--                                            case 'docx':--}}
-{{--                                                return 'assets/media/svg/files/docx.svg';--}}
-{{--                                            case 'xls':--}}
-{{--                                                return 'assets/media/svg/files/xls.svg';--}}
-{{--                                            case 'xlsx':--}}
-{{--                                                return 'assets/media/svg/files/xlsx.svg';--}}
-{{--                                            case 'png':--}}
-{{--                                                return 'assets/media/svg/files/png.svg';--}}
-{{--                                            case 'jpg':--}}
-{{--                                                return 'assets/media/svg/files/jpg.svg';--}}
-{{--                                            case 'jpeg':--}}
-{{--                                                return 'assets/media/svg/files/jpeg.svg';--}}
-{{--                                            case 'mp4':--}}
-{{--                                                return 'assets/media/svg/files/mp4.svg';--}}
-{{--                                            case 'avi':--}}
-{{--                                                return 'assets/media/svg/files/avi.svg';--}}
-{{--                                            case 'mov':--}}
-{{--                                                return 'assets/media/svg/files/mov.svg';--}}
-{{--                                            case 'php':--}}
-{{--                                                return 'assets/media/svg/files/php.svg';--}}
-{{--                                            case 'txt':--}}
-{{--                                                return 'assets/media/svg/files/txt.svg';--}}
-{{--                                            default:--}}
-{{--                                                return 'assets/media/svg/files/default.svg';--}}
-{{--                                        }--}}
-{{--                                    }--}}
-{{--                                @endphp--}}
-
                                 @foreach($files as $file)
                                     <!-- File -->
                                     <tr class="odd">
@@ -609,6 +582,16 @@
                                             <!--begin::Input-->
                                             <input type="file" class="form-control form-control-lg form-control-solid"
                                                    name="file" placeholder="" value=""/>
+                                            @php
+                                                $url = \Illuminate\Support\Facades\Request::url();
+
+                                               if (\Illuminate\Support\Str::contains($url, 'folders')) {
+                                                   $number = \Illuminate\Support\Str::afterLast($url, '/');
+                                               }else{
+                                                   $number = null;
+                                               }
+                                            @endphp
+                                            <input type="hidden" name="folder_id" value="{{ $number }}">
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -689,7 +672,16 @@
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-lg form-control-solid"
                                                    name="folder_name" placeholder="" value=""/>
-                                            <input type="hidden" name="parent_id" value=""/>
+                                            @php
+                                                $url = \Illuminate\Support\Facades\Request::url();
+
+                                               if (\Illuminate\Support\Str::contains($url, 'folders')) {
+                                                   $number = \Illuminate\Support\Str::afterLast($url, '/');
+                                               }else{
+                                                   $number = null;
+                                               }
+                                            @endphp
+                                            <input type="hidden" name="parent_id" value="{{ $number }}"/>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -731,13 +723,17 @@
 
 
         <script>
+
             $(document).on('submit', '#kt_modal_add_file_form', function (event) {
                 event.preventDefault();
 
                 var file = $('input[name="file"]')[0].files[0];
+                var folderId = $('input[name="folder_id"]').val();
+
 
                 var formData = new FormData();
                 formData.append('file', file);
+                formData.append('folder_id', folderId);
 
                 $.ajax({
                     url: '{{ route('add.file') }}',
