@@ -205,7 +205,7 @@
                                                    class="text-gray-800 text-hover-primary ms-6">{{ $folder->name }}</a>
                                             </div>
                                         </td>
-                                        <td>0 KB</td>
+                                        <td></td>
                                         <td data-order="Invalid date">{{ date('j M Y, g:i a', strtotime($folder->updated_at)) }}</td>
                                         <td></td>
                                         <td data-order="Invalid date"></td>
@@ -306,13 +306,14 @@
                                                         data-kt-menu="true">
                                                         <!--begin::Menu item-->
                                                         <div class="menu-item px-3">
-                                                            <a href="../../demo1/dist/apps/file-manager/files.html"
+                                                            <a href="{{ route('folder.show', $folder->id) }}"
                                                                class="menu-link px-3">View</a>
                                                         </div>
                                                         <!--end::Menu item-->
                                                         <!--begin::Menu item-->
                                                         <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3"
+                                                            <a id="#kt_modal_rename_folder" class="menu-link px-3" data-bs-toggle="modal"
+                                                               data-bs-target="#kt_modal_rename_folder" data-folder-id="{{ $folder->id }}"
                                                                data-kt-filemanager-table="rename">Rename</a>
                                                         </div>
                                                         <!--end::Menu item-->
@@ -326,8 +327,8 @@
                                                             <a href="#" class="menu-link px-3"
                                                                data-kt-filemanager-table-filter="move_row"
                                                                data-bs-toggle="modal"
-                                                               data-bs-target="#kt_modal_move_to_folder">Move to
-                                                                folder</a>
+                                                               data-folder-id="{{ $folder->id }}"
+                                                               data-bs-target="#kt_modal_move_to_folder">Move to folder</a>
                                                         </div>
                                                         <!--end::Menu item-->
                                                         <!--begin::Menu item-->
@@ -472,14 +473,14 @@
                                                         </div>
                                                         <!--end::Menu item-->
                                                         <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3"
-                                                               data-kt-filemanager-table="rename">Rename</a>
-                                                        </div>
+{{--                                                        <div class="menu-item px-3">--}}
+{{--                                                            <a href="#" class="menu-link px-3"--}}
+{{--                                                               data-kt-filemanager-table="rename">Rename</a>--}}
+{{--                                                        </div>--}}
                                                         <!--end::Menu item-->
                                                         <!--begin::Menu item-->
                                                         <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Download Folder</a>
+                                                            <a href="#" class="menu-link px-3">Download</a>
                                                         </div>
                                                         <!--end::Menu item-->
                                                         <!--begin::Menu item-->
@@ -710,6 +711,187 @@
         <!--end::Modal dialog-->
     </div>
 
+    <div class="modal fade" id="kt_modal_rename_folder" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-900px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header">
+                    <!--begin::Modal title-->
+                    <h2>Upload File</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none">
+									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                          transform="rotate(-45 6 17.3137)" fill="black"/>
+									<rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                          transform="rotate(45 7.41422 6)" fill="black"/>
+								</svg>
+							</span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body py-lg-10 px-lg-10">
+                    <!--begin::Stepper-->
+                    <div class="stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid"
+                         id="kt_modal_rename_folder_stepper">
+                        <!--begin::Content-->
+                        <div class="flex-row-fluid py-lg-5 px-lg-15">
+                            <!--begin::Form-->
+                            <form class="form" method="post" id="kt_modal_rename_folder_form" action="{{ route('rename.folder') }}">
+                                <!--begin::Step 1-->
+                                @csrf
+                                <div class="current" data-kt-stepper-element="content">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">New Folder Name</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                   title="Folder"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-lg form-control-solid"
+                                                   name="new_folder_name" placeholder="" value=""/>
+                                            <input type="hidden" name="folder_id" id="folderId">
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                </div>
+                                <!--end::Step 1-->
+
+                                <!--begin::Actions-->
+                                <div class="d-flex flex-stack pt-10">
+                                    <button type="submit" class="btn btn-lg btn-primary">Rename Folder</button>
+                                </div>
+
+                                <!--end::Actions-->
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                        <!--end::Content-->
+                    </div>
+                    <!--end::Stepper-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+
+    <div class="modal fade" id="kt_modal_move_to_folder" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Form-->
+                <form class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                      action="{{ route('move.folder') }}" method="post" id="kt_modal_move_to_folder_form">
+                    <!--begin::Modal header-->
+                    @csrf
+                    <div class="modal-header">
+                        <!--begin::Modal title-->
+                        <h2 class="fw-bold">Move to folder</h2>
+                        <!--end::Modal title-->
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
+                            <i class="ki-duotone ki-cross fs-1">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                        </div>
+                        <!--end::Close-->
+                    </div>
+                    <!--end::Modal header-->
+                    <!--begin::Modal body-->
+                    <div class="modal-body pt-10 pb-15 px-lg-17">
+                        <!--begin::Input group-->
+                        <div class="form-group fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-valid">
+
+                            <input type="hidden" name="folderId" id="folderId">
+                            <div class="d-flex">
+                                <!--begin::Checkbox-->
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <!--begin::Input-->
+                                    <input class="form-check-input me-3" name="new_parent_folder_id" type="radio" value="" id="kt_modal_move_to_folder_0">
+                                    <!--end::Input-->
+                                    <!--begin::Label-->
+                                    <label class="form-check-label" for="kt_modal_move_to_folder_0">
+                                        <div class="fw-bold">
+                                            <i class="ki-duotone ki-folder fs-2 text-primary me-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>My Files</div>
+                                    </label>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Checkbox-->
+                            </div>
+                            <div class="separator separator-dashed my-5"></div>
+                            @foreach(\App\Models\Folder::get() as $folder)
+                                <!--begin::Item-->
+                                <div class="d-flex">
+                                    <!--begin::Checkbox-->
+                                    <div class="form-check form-check-custom form-check-solid">
+                                        <!--begin::Input-->
+                                        <input class="form-check-input me-3" name="new_parent_folder_id" type="radio" value="{{ $folder->id }}" id="kt_modal_move_to_folder_{{ $folder->id }}">
+                                        <!--end::Input-->
+                                        <!--begin::Label-->
+                                        <label class="form-check-label" for="kt_modal_move_to_folder_8">
+                                            <div class="fw-bold">
+                                                <i class="ki-duotone ki-folder fs-2 text-primary me-2">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>{{ $folder->name }}</div>
+                                        </label>
+                                        <!--end::Label-->
+                                    </div>
+                                    <!--end::Checkbox-->
+                                </div>
+                                <!--end::Item-->
+                                @if($loop->last)
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                @else
+                                    <div class="separator separator-dashed my-5"></div>
+                                @endif
+                            @endforeach
+
+
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Action buttons-->
+                        <div class="d-flex flex-center mt-12">
+                            <!--begin::Button-->
+                            <button type="submit" class="btn btn-primary"
+                                    id="kt_modal_move_to_folder_submit"
+                            >
+                                <span class="indicator-label">Save</span>
+                                <span class="indicator-progress">Please wait...
+								<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                            <!--end::Button-->
+                        </div>
+                        <!--begin::Action buttons-->
+                    </div>
+                    <!--end::Modal body-->
+                </form>
+                <!--end::Form-->
+            </div>
+        </div>
+    </div>
+
     <!-- Ahmed -->
 
     @push('js')
@@ -723,6 +905,28 @@
 
 
         <script>
+
+            $(document).ready(function() {
+                $('#kt_modal_rename_folder').on('show.bs.modal', function(event) {
+                    var button = $(event.relatedTarget); // Button that triggered the modal
+                    var folderId = button.data('folder-id'); // Retrieve the folder ID from the data-folder-id attribute
+                    var modal = $(this);
+
+                    // Set the folderId value in the hidden input field
+                    modal.find('.modal-body input#folderId').val(folderId);
+                });
+            });
+
+            $(document).ready(function() {
+                $('#kt_modal_move_to_folder').on('show.bs.modal', function(event) {
+                    var button = $(event.relatedTarget); // Button that triggered the modal
+                    var folderId = button.data('folder-id'); // Retrieve the folder ID from the data-folder-id attribute
+                    var modal = $(this);
+
+                    // Set the folderId value in the hidden input field
+                    modal.find('.modal-body input#folderId').val(folderId);
+                });
+            });
 
             $(document).on('submit', '#kt_modal_add_file_form', function (event) {
                 event.preventDefault();

@@ -112,4 +112,26 @@ class IpfsController extends Controller
         return view('dashboard.showFolder', compact('folder', 'folders', 'files'));
 
     }
+    public function renameFolder(Request $request)
+    {
+        $folder = Folder::find($request->folder_id);
+        if (!$folder) {
+            return redirect()->back()->with('error', 'Folder not found.');
+        }
+        $folder->name = $request->new_folder_name;
+        $folder->save();
+        return redirect()->back()->with('success', 'Folder renamed successfully.');
+    }
+
+    public function moveToFolder(Request $request)
+    {
+        $newParentFolderId = $request->input('new_parent_folder_id');
+        $Folder = Folder::find($request->folderId);
+
+        $Folder->parent_id = $newParentFolderId;
+        $Folder->save();
+
+        return redirect()->back()->with('success', 'Folder moved successfully.');
+    }
+
 }

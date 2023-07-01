@@ -48,11 +48,6 @@ Route::get('/get-folders', function (){
          return view('dashboard.Files', compact('files', 'folders'));
      })->name('Files');
 
-     Route::get('/MyFiles', function (){
-         $files = \App\Models\File::all();
-         return view('dashboard.tableFile', compact('files'));
-     })->name('MyFiles');
-
  });
 
 Route::get('/', function (){
