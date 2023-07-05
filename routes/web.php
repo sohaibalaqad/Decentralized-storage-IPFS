@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,6 +66,31 @@ Route::get('/get-folders', function (){
         Route::get('/partner/documentation', function () {
             return view('PartnerDashboard.documentation');
         })->name('documentation');
+
+
+
+        // Admin Routes
+        Route::get('/admin/dashboard', function () {
+            return view('AdminDashboard.index');
+        })->name('admin_dashboard');
+        // Admin Users
+        Route::resource('/admin/users', UserController::class);
+         // Admin Partner
+         Route::resource('/admin/partner', PartnerController::class);
+
+
+        // Route::get('/admin/users/show', function () {
+        //     return view('AdminDashboard.users.show');
+        // })->name('admin_users_show');
+
+
+        // Route::get('/partner/getStart', function () {
+        //     return view('PartnerDashboard.GetStarted');
+        // })->name('get_start');
+
+        // Route::get('/partner/documentation', function () {
+        //     return view('PartnerDashboard.documentation');
+        // })->name('documentation');
 
 
 
