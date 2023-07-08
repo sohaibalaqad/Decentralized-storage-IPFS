@@ -1,12 +1,25 @@
 @extends('PartnerLayouts.dashboard.main')
 
 @section('title')
-    Node
+Node
 @endsection
+
+@section('title_route')
+{{route('partner.index')}}
+@endsection
+
+
+
 @push('css')
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}"/>
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
           type="text/css"/>
+
+          <style>
+            .card.card-flush {
+                margin: 20px;
+            }
+        </style>
 @endpush
 
 
@@ -97,11 +110,7 @@
                                     <thead>
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                         <th class=" pe-2 sorting_disabled" rowspan="1" colspan="1" style="width: 2%;">
-                                            <div
-                                                class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                                <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                                       data-kt-check-target="#kt_file_manager_list .form-check-input"
-                                                       value="1">
+                                            <div>#</div>
                                             </div>
                                         </th>
                                         <th class="min-w-250px sorting_disabled" rowspan="1" colspan="1"
@@ -163,12 +172,10 @@
 
                                 <tr class="odd">
                                     <td>
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="1">
-                                        </div>
+                                       <div class="text-gray-800 sorting_disabled">1</div>
                                     </td>
                                     <td data-order="Images">
-                                        <div class="d-flex align-items-center">
+                                        <div class="text-gray-800 text-hover-primary ms-6">
                                             <span>
 {{--                                            <img src="{{ asset('assets/media/svg/files/folder-document.svg') }}" width="50" alt=""/>--}}
 <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M64 32C28.7 32 0 60.7 0 96v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm48 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM64 288c-35.3 0-64 28.7-64 64v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V352c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm56 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/></svg>                                            </span>
@@ -262,6 +269,7 @@
                                                     data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
+                                                        {{-- {{route('nodes.show'.$node->id)}} --}}
                                                         <a href="#"
                                                            class="menu-link px-3">Info</a>
                                                     </div>
@@ -317,339 +325,56 @@
 
     <div class="modal fade" id="kt_modal_add_file" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-900px">
-            <!--begin::Modal content-->
-            <div class="modal-content">
-                <!--begin::Modal header-->
-                <div class="modal-header">
-                    <!--begin::Modal title-->
-                    <h2>Upload File</h2>
-                    <!--end::Modal title-->
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                        <span class="svg-icon svg-icon-1">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none">
-									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
-                                          transform="rotate(-45 6 17.3137)" fill="black"/>
-									<rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                          transform="rotate(45 7.41422 6)" fill="black"/>
-								</svg>
-							</span>
-                        <!--end::Svg Icon-->
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--end::Modal header-->
-                <!--begin::Modal body-->
-                <div class="modal-body py-lg-10 px-lg-10">
-                    <!--begin::Stepper-->
-                    <div class="stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid"
-                         id="kt_modal_add_file_stepper">
-                        <!--begin::Content-->
-                        <div class="flex-row-fluid py-lg-5 px-lg-15">
-                            <!--begin::Form-->
-                            <form class="form" id="kt_modal_add_file_form">
-                                <!--begin::Step 1-->
-                                <div class="current" data-kt-stepper-element="content">
-                                    <div class="w-100">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row mb-10">
-                                            <!--begin::Label-->
-                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="required">File</span>
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                                   title="File"></i>
-                                            </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="file" class="form-control form-control-lg form-control-solid"
-                                                   name="file" placeholder="" value=""/>
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-                                    </div>
-                                </div>
-                                <!--end::Step 1-->
-
-                                <!--begin::Actions-->
-                                <div class="d-flex flex-stack pt-10">
-                                    <button type="submit" class="btn btn-lg btn-primary">Upload
-                                    </button>
-                                </div>
-
-                                <!--end::Actions-->
-                            </form>
-                            <!--end::Form-->
-                        </div>
-                        <!--end::Content-->
-                    </div>
-                    <!--end::Stepper-->
-                </div>
-                <!--end::Modal body-->
+        <div class="modal-dialog modal-dialog-centered">
+          <!--begin::Modal content-->
+          <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header">
+              <!--begin::Modal title-->
+              <h2 class="modal-title text-primary">New Node</h2>
+              <!--end::Modal title-->
+              <!--begin::Close-->
+              <button type="button" class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                <span class="svg-icon svg-icon-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"/>
+                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"/>
+                  </svg>
+                </span>
+              </button>
+              <!--end::Close-->
             </div>
-            <!--end::Modal content-->
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body py-8 px-10">
+              <!--begin::Form-->
+              <div>
+                <p class="text-gray-700">
+                    The Connect3 documentation guides us on adding a new node to the network. 
+                    It covers software requirements, configurations, protocols, 
+                    and performance optimization. By following it, we can expand the decentralized Connect3 network.
+                </p>
+              </div>
+              <!--end::Form-->
+            </div>
+            <!--end::Modal body-->
+            <!--begin::Modal footer-->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+              <a href="{{ route('documentation') }}" class="btn btn-primary">Add Node</a>
+            </div>
+            <!--end::Modal footer-->
+          </div>
+          <!--end::Modal content-->
         </div>
         <!--end::Modal dialog-->
-    </div>
-
-    <div class="modal fade" id="kt_modal_add_folder" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-900px">
-            <!--begin::Modal content-->
-            <div class="modal-content">
-                <!--begin::Modal header-->
-                <div class="modal-header">
-                    <!--begin::Modal title-->
-                    <h2>Upload File</h2>
-                    <!--end::Modal title-->
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                        <span class="svg-icon svg-icon-1">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none">
-									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
-                                          transform="rotate(-45 6 17.3137)" fill="black"/>
-									<rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                          transform="rotate(45 7.41422 6)" fill="black"/>
-								</svg>
-							</span>
-                        <!--end::Svg Icon-->
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--end::Modal header-->
-                <!--begin::Modal body-->
-                <div class="modal-body py-lg-10 px-lg-10">
-                    <!--begin::Stepper-->
-                    <div class="stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid"
-                         id="kt_modal_add_folder_stepper">
-                        <!--begin::Content-->
-                        <div class="flex-row-fluid py-lg-5 px-lg-15">
-                            <!--begin::Form-->
-                            <form class="form" method="post" id="kt_modal_add_folder_form" action="{{ route('create.folder') }}">
-                                <!--begin::Step 1-->
-                                @csrf
-                                <div class="current" data-kt-stepper-element="content">
-                                    <div class="w-100">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row mb-10">
-                                            <!--begin::Label-->
-                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="required">Folder Name</span>
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                                   title="Folder"></i>
-                                            </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-lg form-control-solid"
-                                                   name="folder_name" placeholder="" value=""/>
-                                            <input type="hidden" name="parent_id" value=""/>
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-                                    </div>
-                                </div>
-                                <!--end::Step 1-->
-
-                                <!--begin::Actions-->
-                                <div class="d-flex flex-stack pt-10">
-                                    <button type="submit" class="btn btn-lg btn-primary">Add Folder
-                                    </button>
-                                </div>
-
-                                <!--end::Actions-->
-                            </form>
-                            <!--end::Form-->
-                        </div>
-                        <!--end::Content-->
-                    </div>
-                    <!--end::Stepper-->
-                </div>
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
-
-    <div class="modal fade" id="kt_modal_rename_folder" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-900px">
-            <!--begin::Modal content-->
-            <div class="modal-content">
-                <!--begin::Modal header-->
-                <div class="modal-header">
-                    <!--begin::Modal title-->
-                    <h2>Upload File</h2>
-                    <!--end::Modal title-->
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                        <span class="svg-icon svg-icon-1">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none">
-									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
-                                          transform="rotate(-45 6 17.3137)" fill="black"/>
-									<rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                          transform="rotate(45 7.41422 6)" fill="black"/>
-								</svg>
-							</span>
-                        <!--end::Svg Icon-->
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--end::Modal header-->
-                <!--begin::Modal body-->
-                <div class="modal-body py-lg-10 px-lg-10">
-                    <!--begin::Stepper-->
-                    <div class="stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid"
-                         id="kt_modal_rename_folder_stepper">
-                        <!--begin::Content-->
-                        <div class="flex-row-fluid py-lg-5 px-lg-15">
-                            <!--begin::Form-->
-                            <form class="form" method="post" id="kt_modal_rename_folder_form" action="{{ route('rename.folder') }}">
-                                <!--begin::Step 1-->
-                                @csrf
-                                <div class="current" data-kt-stepper-element="content">
-                                    <div class="w-100">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row mb-10">
-                                            <!--begin::Label-->
-                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="required">New Folder Name</span>
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                                   title="Folder"></i>
-                                            </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-lg form-control-solid"
-                                                   name="new_folder_name" placeholder="" value=""/>
-                                            <input type="hidden" name="folder_id" id="folderId">
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-                                    </div>
-                                </div>
-                                <!--end::Step 1-->
-
-                                <!--begin::Actions-->
-                                <div class="d-flex flex-stack pt-10">
-                                    <button type="submit" class="btn btn-lg btn-primary">Rename Folder</button>
-                                </div>
-
-                                <!--end::Actions-->
-                            </form>
-                            <!--end::Form-->
-                        </div>
-                        <!--end::Content-->
-                    </div>
-                    <!--end::Stepper-->
-                </div>
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
-
-    <div class="modal fade" id="kt_modal_move_to_folder" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-650px">
-            <!--begin::Modal content-->
-            <div class="modal-content">
-                <!--begin::Form-->
-                <form class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                      action="{{ route('move.folder') }}" method="post" id="kt_modal_move_to_folder_form">
-                    <!--begin::Modal header-->
-                    @csrf
-                    <div class="modal-header">
-                        <!--begin::Modal title-->
-                        <h2 class="fw-bold">Move to folder</h2>
-                        <!--end::Modal title-->
-                        <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
-                            <i class="ki-duotone ki-cross fs-1">
-                                <span class="path1"></span>
-                                <span class="path2"></span>
-                            </i>
-                        </div>
-                        <!--end::Close-->
-                    </div>
-                    <!--end::Modal header-->
-                    <!--begin::Modal body-->
-                    <div class="modal-body pt-10 pb-15 px-lg-17">
-                        <!--begin::Input group-->
-                        <div class="form-group fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-valid">
-
-                            <input type="hidden" name="folderId" id="folderId">
-                            <div class="d-flex">
-                                <!--begin::Checkbox-->
-                                <div class="form-check form-check-custom form-check-solid">
-                                    <!--begin::Input-->
-                                    <input class="form-check-input me-3" name="new_parent_folder_id" type="radio" value="" id="kt_modal_move_to_folder_0">
-                                    <!--end::Input-->
-                                    <!--begin::Label-->
-                                    <label class="form-check-label" for="kt_modal_move_to_folder_0">
-                                        <div class="fw-bold">
-                                            <i class="ki-duotone ki-folder fs-2 text-primary me-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>My Files</div>
-                                    </label>
-                                    <!--end::Label-->
-                                </div>
-                                <!--end::Checkbox-->
-                            </div>
-                            <div class="separator separator-dashed my-5"></div>
-
-                            <!--begin::Item-->
-                            <div class="d-flex">
-                                <!--begin::Checkbox-->
-                                <div class="form-check form-check-custom form-check-solid">
-                                    <!--begin::Input-->
-                                    <input class="form-check-input me-3" name="new_parent_folder_id" type="radio" value="#" id="">
-                                    <!--end::Input-->
-                                    <!--begin::Label-->
-                                    <label class="form-check-label" for="kt_modal_move_to_folder">
-                                        <div class="fw-bold">
-                                            <i class="ki-duotone ki-folder fs-2 text-primary me-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>name</div>
-                                    </label>
-                                    <!--end::Label-->
-                                </div>
-                                <!--end::Checkbox-->
-                            </div>
-                            <!--end::Item-->
-
-
-
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Action buttons-->
-                        <div class="d-flex flex-center mt-12">
-                            <!--begin::Button-->
-                            <button type="submit" class="btn btn-primary"
-                                    id="kt_modal_move_to_folder_submit"
-                            >
-                                <span class="indicator-label">Save</span>
-                                <span class="indicator-progress">Please wait...
-								<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                            </button>
-                            <!--end::Button-->
-                        </div>
-                        <!--begin::Action buttons-->
-                    </div>
-                    <!--end::Modal body-->
-                </form>
-                <!--end::Form-->
-            </div>
-        </div>
-    </div>
+      </div>
+      
+      
+      
+      
+    
+    
 
     <!-- Ahmed -->
 

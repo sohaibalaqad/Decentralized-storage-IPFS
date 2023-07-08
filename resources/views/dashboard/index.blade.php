@@ -1,7 +1,7 @@
 @extends('NewLayouts.dashboard.main')
 
 @section('title')
-الصفحة الرئسية
+Dashboard
 @endsection
 {{-- css --}}
 @push('css')
@@ -199,7 +199,7 @@
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
-                                
+
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xxl-4">
@@ -226,12 +226,12 @@
                                     <!--end::Col-->
                                 </div>
                                 <!--end::Row-->
-                        
+
                                 <!--begin::Row-->
                                 <div class="row g-5 g-xxl-8">
                                     <!--begin::Col-->
                                     <div class="col-xxl-4">
-                                    
+
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
@@ -698,7 +698,7 @@
                                 </div>
                                 <!--end::Row-->
                                 <!--begin::Row-->
-                                
+
                                 <!--end::Row-->
                             </div>
                             <!--end::Container-->
@@ -710,7 +710,7 @@
 
 {{-- js --}}
 @push('js')
-    
+
 @endpush
 
 
