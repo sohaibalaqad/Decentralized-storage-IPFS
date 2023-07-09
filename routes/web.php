@@ -50,6 +50,11 @@ Route::get('/get-folders', function (){
          return view('dashboard.Files', compact('files', 'folders'));
      })->name('Files');
 
+
+     Route::get('/dashboard/user/settings', function () {
+        return view('dashboard.settings');
+    })->name('user_settings');
+
         // partner Routes
         Route::get('/partner/dashboard', function () {
             return view('PartnerDashboard.index');
@@ -75,7 +80,7 @@ Route::get('/get-folders', function (){
 
         // Admin Routes
         Route::get('/admin/dashboard', function () {
-            
+
             return view('AdminDashboard.index');
         })->name('admin_dashboard');
         // Admin Users
