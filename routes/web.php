@@ -56,23 +56,23 @@ Route::get('/get-folders', function (){
     })->name('user_settings');
 
         // partner Routes
-        Route::get('/partner/dashboard', function () {
+        Route::get('partner/dashboard', function () {
             return view('PartnerDashboard.index');
         })->name('partner_dashboard');
 
-        Route::get('/partner/nodes', function () {
-            return view('PartnerDashboard.nodes.index');
+        Route::get('partner/nodes', function () {
+            return view('PartnerDashboard.node');
         })->name('nodes');
 
         Route::get('/partner/nodes/show', function () {
             return view('PartnerDashboard.nodes.show');
         })->name('nodes.show');
 
-        Route::get('/partner/getStart', function () {
+        Route::get('partner/getStart', function () {
             return view('PartnerDashboard.GetStarted');
         })->name('get_start');
 
-        Route::get('/partner/documentation', function () {
+        Route::get('partner/documentation', function () {
             return view('PartnerDashboard.documentation');
         })->name('documentation');
 
@@ -113,3 +113,40 @@ Route::get('/', function (){
 
 
 Route::get('/folders/{id}', [\App\Http\Controllers\IpfsController::class, 'showFolder'])->name('folder.show');
+
+Route::get('test', function (){
+
+
+    $ip = '217.147.1.37';
+    $community = 'public';
+
+//    $allocationUnitsOid = '1.3.6.1.2.1.25.2.3.1.4'; // OID for allocation units
+    $allocationUnitsOid = '1.3.6.1.2.1.25.2.3.1.3';
+    $sizeOid = '1.3.6.1.2.1.25.2.3.1.5'; // OID for disk size
+    $usedOid = '1.3.6.1.2.1.25.2.3.1.6'; // OID for used space
+
+    $session = new SNMP(SNMP::VERSION_2C, $ip, $community);
+    $session->oid_output_format = SNMP_OID_OUTPUT_NUMERIC;
+    $session->quick_print = true;
+
+    $allocationUnits = array_sum($session->walk($allocationUnitsOid));
+    $size = array_sum($session->walk($sizeOid));
+    $used = array_sum($session->walk($usedOid));
+
+    dd($session->walk('1.3.6.1.2.1.25.2.3.1.3'));
+
+    // Calculate disk information
+    $diskSize = $allocationUnits * $size;
+    $freeSpace = ($allocationUnits * $size) - ($allocationUnits * $used);
+
+    $session->close();
+    // Output the results
+    return response()->json([
+        'diskSize' => $diskSize,
+        'freeSpace' => $freeSpace,
+    ]);
+
+
+
+
+});
