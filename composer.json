@@ -31,7 +31,8 @@
         },
         "files": [
             "app/Helpers/EncryptionHelper.php",
-            "app/Helpers/FileIcons.php"
+            "app/Helpers/FileIcons.php",
+            "app/Helpers/getSizeDisk.php"
         ]
     },
     "autoload-dev": {

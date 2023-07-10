@@ -170,21 +170,22 @@ Node
 
                                 <!-- Folder -->
 
+                                @foreach($nodes as $node)
                                 <tr class="odd">
                                     <td>
-                                       <div class="text-gray-800 sorting_disabled">1</div>
+                                       <div class="text-gray-800 sorting_disabled">{{ $loop->iteration }}</div>
                                     </td>
                                     <td data-order="Images">
                                         <div class="text-gray-800 text-hover-primary ms-6">
                                             <span>
-{{--                                            <img src="{{ asset('assets/media/svg/files/folder-document.svg') }}" width="50" alt=""/>--}}
-<svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M64 32C28.7 32 0 60.7 0 96v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm48 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM64 288c-35.3 0-64 28.7-64 64v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V352c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm56 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/></svg>                                            </span>
+                                                {{--                                            <img src="{{ asset('assets/media/svg/files/folder-document.svg') }}" width="50" alt=""/>--}}
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M64 32C28.7 32 0 60.7 0 96v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm48 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM64 288c-35.3 0-64 28.7-64 64v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V352c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm56 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/></svg>                                            </span>
                                             <a href="#"
-                                               class="text-gray-800 text-hover-primary ms-6">server1</a>
+                                               class="text-gray-800 text-hover-primary ms-6">{{ $node->name }}</a>
                                         </div>
                                     </td>
 
-                                    <td data-order="Invalid date">-</td>
+                                    <td data-order="Invalid date">{{ $node->disk_size }}</td>
                                     <td></td>
                                     <td data-order="Invalid date"></td>
                                     <td class="text-end" data-kt-filemanager-table="action_dropdown">
@@ -294,7 +295,7 @@ Node
                                     </td>
                                 </tr>
 
-
+                                @endforeach
 
 
 
@@ -350,8 +351,8 @@ Node
               <!--begin::Form-->
               <div>
                 <p class="text-gray-700">
-                    The Connect3 documentation guides us on adding a new node to the network. 
-                    It covers software requirements, configurations, protocols, 
+                    The Connect3 documentation guides us on adding a new node to the network.
+                    It covers software requirements, configurations, protocols,
                     and performance optimization. By following it, we can expand the decentralized Connect3 network.
                 </p>
               </div>
@@ -369,12 +370,12 @@ Node
         </div>
         <!--end::Modal dialog-->
       </div>
-      
-      
-      
-      
-    
-    
+
+
+
+
+
+
 
     <!-- Ahmed -->
 

@@ -61,7 +61,8 @@ Route::get('/get-folders', function (){
         })->name('partner_dashboard');
 
         Route::get('partner/nodes', function () {
-            return view('PartnerDashboard.node');
+            $nodes = \App\Models\Node::orderBy('created_at', 'desc')->get();
+            return view('PartnerDashboard.nodes.index', compact('nodes'));
         })->name('nodes');
 
         Route::get('/partner/nodes/show', function () {
@@ -120,10 +121,9 @@ Route::get('test', function (){
     $ip = '217.147.1.37';
     $community = 'public';
 
-//    $allocationUnitsOid = '1.3.6.1.2.1.25.2.3.1.4'; // OID for allocation units
-    $allocationUnitsOid = '1.3.6.1.2.1.25.2.3.1.3';
-    $sizeOid = '1.3.6.1.2.1.25.2.3.1.5'; // OID for disk size
-    $usedOid = '1.3.6.1.2.1.25.2.3.1.6'; // OID for used space
+    $allocationUnitsOid = '1.3.6.1.2.1.25.2.3.1.4';
+    $sizeOid = '1.3.6.1.2.1.25.2.3.1.5';
+    $usedOid = '1.3.6.1.2.1.25.2.3.1.6';
 
     $session = new SNMP(SNMP::VERSION_2C, $ip, $community);
     $session->oid_output_format = SNMP_OID_OUTPUT_NUMERIC;
@@ -133,7 +133,7 @@ Route::get('test', function (){
     $size = array_sum($session->walk($sizeOid));
     $used = array_sum($session->walk($usedOid));
 
-    dd($session->walk('1.3.6.1.2.1.25.2.3.1.3'));
+//    dd($session->walk('1.3.6.1.2.1.25.2.3.1.3'));
 
     // Calculate disk information
     $diskSize = $allocationUnits * $size;
@@ -141,10 +141,10 @@ Route::get('test', function (){
 
     $session->close();
     // Output the results
-    return response()->json([
-        'diskSize' => $diskSize,
-        'freeSpace' => $freeSpace,
-    ]);
+    return [
+        'diskSize' => number_format($diskSize / 1024 /1024 / 1024, 2, '.', ''),
+        'freeSpace' => number_format($freeSpace / 1024 /1024 / 1024, 2, '.', ''),
+    ];
 
 
 
