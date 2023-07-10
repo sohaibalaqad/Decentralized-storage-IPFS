@@ -1,8 +1,20 @@
 @extends('AdminLayouts.dashboard.main')
 
 @section('title')
-<a href="{{ route('users.index') }}" style="color: black;">Users </a>  / Show User
+Users
 @endsection
+
+@section('title_route')
+{{route('admin_dashboard')}}
+@endsection
+
+
+@section('subtitle')
+Show User
+@endsection
+
+
+
 @push('css')
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />

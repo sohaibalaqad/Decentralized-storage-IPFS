@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\PartnerController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +50,11 @@ Route::get('/get-folders', function (){
          return view('dashboard.Files', compact('files', 'folders'));
      })->name('Files');
 
+
+     Route::get('/dashboard/user/settings', function () {
+        return view('dashboard.settings');
+    })->name('user_settings');
+
         // partner Routes
         Route::get('partner/dashboard', function () {
             return view('PartnerDashboard.index');
@@ -58,6 +63,10 @@ Route::get('/get-folders', function (){
         Route::get('partner/nodes', function () {
             return view('PartnerDashboard.node');
         })->name('nodes');
+
+        Route::get('/partner/nodes/show', function () {
+            return view('PartnerDashboard.nodes.show');
+        })->name('nodes.show');
 
         Route::get('partner/getStart', function () {
             return view('PartnerDashboard.GetStarted');
@@ -71,6 +80,7 @@ Route::get('/get-folders', function (){
 
         // Admin Routes
         Route::get('/admin/dashboard', function () {
+
             return view('AdminDashboard.index');
         })->name('admin_dashboard');
         // Admin Users

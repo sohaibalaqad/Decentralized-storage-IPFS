@@ -1539,13 +1539,13 @@
                         <div class="d-flex align-items-center">
                             <!--begin::Avatar-->
                             <div class="symbol symbol-circle symbol-50px me-5">
-                                <img src="{{ asset('assets/media/avatars/Mahdy.jpg') }}" class="" alt="" />
+                                <img src="{{ asset('assets/media/avatars/Sohuil.jpg') }}" class="" alt="" />
                             </div>
                             <!--end::Avatar-->
                             <!--begin::Name-->
                             <div class="flex-grow-1">
-                                <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">Mahdy Matar</a>
-                                <span class="text-muted d-block fw-bold">Front End developer</span>
+                                <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">Suhail Abed</a>
+                                <span class="text-muted d-block fw-bold">Cyber security engineer</span>
                             </div>
                             <!--end::Name-->
                         </div>
@@ -1565,13 +1565,13 @@
                         <div class="d-flex align-items-center">
                             <!--begin::Avatar-->
                             <div class="symbol symbol-circle symbol-50px me-5">
-                                <img src="{{ asset('assets/media/avatars/Sohuil.jpg') }}" class="" alt="" />
+                                <img src="{{ asset('assets/media/avatars/obida.jpg') }}" class="" alt="" />
                             </div>
                             <!--end::Avatar-->
                             <!--begin::Name-->
                             <div class="flex-grow-1">
-                                <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">Sohuil Abed</a>
-                                <span class="text-muted d-block fw-bold">Cyber security engineer.</span>
+                                <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">Obaida Albeltaji</a>
+                                <span class="text-muted d-block fw-bold">DevOps</span>
                             </div>
                             <!--end::Name-->
                         </div>
@@ -1592,13 +1592,13 @@
                         <div class="d-flex align-items-center">
                             <!--begin::Avatar-->
                             <div class="symbol symbol-circle symbol-50px me-5">
-                                <img src="{{ asset('assets/media/avatars/obida.jpg') }}" class="" alt="" />
+                                <img src="{{ asset('assets/media/avatars/Mahdy.jpg') }}" class="" alt="" />
                             </div>
                             <!--end::Avatar-->
                             <!--begin::Name-->
                             <div class="flex-grow-1">
-                                <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">Obaida Albeltaji</a>
-                                <span class="text-muted d-block fw-bold">DevOps</span>
+                                <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">Mahdy Matar</a>
+                                <span class="text-muted d-block fw-bold">Front End developer</span>
                             </div>
 
                             <!--end::Name-->

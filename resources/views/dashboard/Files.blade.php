@@ -1099,6 +1099,7 @@
                                 </tr>
                                 @endforeach
 
+
                                 @foreach($files as $file)
                                         <!-- File -->
                                     <tr class="odd">
@@ -1225,10 +1226,7 @@
                                                         </div>
                                                         <!--end::Menu item-->
                                                         <!--begin::Menu item-->
-{{--                                                        <div class="menu-item px-3">--}}
-{{--                                                            <a href="#" class="menu-link px-3"--}}
-{{--                                                               data-kt-filemanager-table="rename">Rename</a>--}}
-{{--                                                        </div>--}}
+
                                                         <!--end::Menu item-->
                                                         <!--begin::Menu item-->
                                                         <div class="menu-item px-3">
@@ -1713,7 +1711,7 @@
                                         '<div class="d-flex flex-column text-start d-none" data-kt-filemanger-table="copy_link_result"> <div class="d-flex mb-3"> <i class="ki-duotone ki-check fs-2 text-success me-3"></i><div class="fs-6 text-dark">Share Link Generated</div></div><input type="text" class="form-control form-control-sm" value="https://path/to/file/or/folder/"><div class="text-muted fw-normal mt-2 fs-8 px-3">Read only.<a href="../../demo1/dist/apps/file-manager/settings/.html" class="ms-2">Change permissions</a></div></div></div></div></div></div>' +
                                         '<div class="ms-2"><button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary me-2" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="ki-duotone ki-dots-square fs-5 m-0"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><style>svg {fill: #009ef7}</style><path d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z" /></svg></i></button>' +
                                         '<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-150px py-4" data-kt-menu="true">' +
-                                        '<div class="menu-item px-3"><a href="{{ route('cat', $file->hash) }}" class="menu-link px-3" target="_blank">View</a></div>' +
+                                        '<div class="menu-item px-3"><a href="#" class="menu-link px-3" target="_blank">View</a></div>' +
                                         '<div class="menu-item px-3"><a href="#" class="menu-link px-3" data-kt-filemanager-table="rename">Rename</a> </div>' +
                                         '<div class="menu-item px-3"><a href="#" class="menu-link px-3">Download Folder</a></div>' +
                                         '<div class="menu-item px-3"><a href="#" class="menu-link px-3" data-kt-filemanager-table-filter="move_row" data-bs-toggle="modal" data-bs-target="#kt_modal_move_to_folder">Move to folder</a></div>' +

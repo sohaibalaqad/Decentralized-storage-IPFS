@@ -1,9 +1,19 @@
 @extends('AdminLayouts.dashboard.main')
 
 @section('title')
-<a href="{{ route('partner.index') }}" style="color: black;">Partners </a>  /Show Partner
-
+Partners
 @endsection
+
+@section('title_route')
+{{route('admin_dashboard')}}
+@endsection
+
+
+@section('subtitle')
+Show Partner
+@endsection
+
+
 @push('css')
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
